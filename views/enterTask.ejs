@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/css/bootstrap.min.css' />
+    <link rel = 'stylesheet' href = "/css/fontawesome/font-awesome.min.css" />
+    <link rel = 'stylesheet' href = "/css/style1.css"
+
+  </head>
+  <body>
+    <div class = "container">
+      <div class ="col-sm-3 col-md-3">
+      </div>
+      <div class = "col-sm-6 col-md-6">
+        <div class = "row">
+          <center>
+            <h1><%= title %></h1>
+          </center>
+        </div>
+        <form id="add-new-task">
+          <div class="row">
+              <label for="new-task-name">Enter task name:</label>
+              <input id="new-task-name" name="new-task-name" type="text" required>
+          </div>
+          <br>
+          <div class="row">
+            <label for="new-task-date">Enter task Date:</label>
+            <input id="new-task-date" name="new-task-date" type="datetime" required>
+          </div>
+          <br>
+          <div class="row">
+            <label for="new-task-priority">Enter task priority: </label>
+            <input id="new-task-priority" name="new-task-priority" type="number" required min="1" max="5" step="1" value="2">
+          </div>
+          <br>
+          <div class="row">
+            <label for="new-task-color">Enter task color: </label>
+            <input id="new-task-color" name="new-task-color" type="color">
+          </div>
+          <br>
+          <div class="row">
+            <label for="new-task-desc">Enter task description: </label>
+              <input id="new-task-desc" name="new-task-desc" type="text">
+          </div>
+          <br>
+          <div class="row">
+            <label for="new-task-email">Enter email for task reminder: </label>
+            <input id="new-task-email" name="new-task-email" type="email" multiple>
+          </div>
+          <br>
+          <div class="row">
+            <center>
+              <input type="submit" value="Add new">
+            </center>
+          </div>
+      </form>
+      <div class="row">
+        <table id="to-do-list">
+            <caption>What's up next?</caption>
+            <colgroup>
+                <col />
+                <col />
+                <col />
+                <col />
+                <col />
+                <col />
+            </colgroup>
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Date</th>
+                <th scope="col">Priority</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Invitees</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+      </div>
+    </div>
+     <div class = "col-sm-3 col-md-3">
+      </div>
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+      <script type="text/javascript">
+              jQuery(document).on('ready', function() {
+          jQuery('form#add-new-task').bind('submit', function(event){
+              event.preventDefault();
+
+              var tbody = jQuery('#to-do-list > tbody');
+
+              tbody.append('<tr><th scope="row" style="background-color:' + this['new-task-color'].value +
+                  '"><input type="checkbox" /></th><td>' + this['new-task-date'].value +
+                  '</td><td>' + this['new-task-priority'].value + '</td><td>' + this['new-task-name'].value +
+                  '</td><td>' + this['new-task-desc'].value + '</td><td>' + this['new-task-email'].value + '</td></tr>');
+
+              return false;
+          });
+        });
+      </script>
+
+
+  </body>
+</html>
